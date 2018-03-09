@@ -1,0 +1,21 @@
+<%= form_for(@article) do |f| %>
+
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :content %>
+    <%= f.text_field :content %>
+  </div>
+
+  <div class="tag_cloud">
+    <%=f.label :tags %>
+    <%= f.select :tags,Tag.all.map { |t| [t.title ,t.id] },multiple: true, required: true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<%end %>

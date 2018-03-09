@@ -1,0 +1,31 @@
+<h1>Article#index</h1>
+<!-- <p>Find me in app/views/article/index.html.erb</p> -->
+
+<%=form_tag(articles_path, method: :get) do %>
+<%=text_field_tag :term, params[:term] %>
+<%=select_tag "filter", options_for_select([["title", "title"], ["tag", "tag"], ["subtag", "subtag"], ["text", "content"]])%>
+<%=submit_tag :Search  %>
+<% end %>
+<tabe>
+  <thead>
+    <tr>
+      <td>title</td>
+      <td>description</td>
+      <td>tags</td>
+    </tr>
+  </thead>
+  <tbody>
+    <%= @articles.each do |article| %>
+    <tr>
+      <td>article.title</td>
+      <td>article.description</td>
+      <td>article</td>
+      <td><%= link_to 'Show', article %></td>
+      <td><%= link_to 'Edit', edit_article_path(article) %></td>
+      <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  </tbody>
+  <%end %>
+</table>
+<br>
+<%= link_to 'New article', new_article_path %>
